@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./../css/clock.css">
+    <script src="./../lib/jquery-3.6.0.min.js"></script>
+    <script src="./../lib/jquery.transit.min.js"></script>
+
+    <!-- DateTime JS  -->
+    <script src="./../js/localDate.js"></script>
+    <script src="./../js/settings.js"></script>
+
+</head>
+
+<body id="body">
+    <div id="dateTimeArea">
+        <p id="clockDateWBorder" class="clockDateWBorder" style="position: fixed; left:15px; top: 10px;"></p>
+        <p id="clockDateNoBorder" class="clockDateNoBorder" style="position: fixed; left:15px; top: 10px;"></p>
+        <p id="clockTimeWBorder" class="clockTimeWBorder" style="position: fixed; left:10px; top: 50px;"></p>
+        <p id="clockTimeNoBorder" class="clockTimeNoBorder" style="position: fixed; left:10px; top: 50px;"></p>
+    </div>
+
+    <script>
+        $(function () {
+            // 日付、時間文の表記設定初期化
+            initializeDateTimeView();
+
+            // 時間初期化（時差の値は"js/settings.js"ファイル参照）
+            setInterval(function () {
+                initDateTimeDisplay(timeDiffsInHour);
+            }, isShowMilliSeconds() ? 1 : 100);
+            initDateTimeDisplay(timeDiffsInHour);
+        });
+
+        function initializeDateTimeView() {
+            var clockDateWBorder = document.getElementById("clockDateWBorder");
+            var clockDateNoBorder = document.getElementById("clockDateNoBorder");
+            var clockTimeWBorder = document.getElementById("clockTimeWBorder");
+            var clockTimeNoBorder = document.getElementById("clockTimeNoBorder");
+
+            var attrStyle = "style";
+            // デフォルト設定
+            var dateStyle = "";
+            var timeStyle = "";
+
+            switch (showPattern) {
+                // 日付け＋時間を両方表示
+                case 0: // 0: 基本セット（年月日、曜日、時間、分、秒）
+                default:
+                    dateStyle = "position: fixed; left: 15px; top: 10px; font-size: 31px;";
+                    timeStyle = "position: fixed; left: 10px; top: 50px; font-size: 70px;";
+                    break;
+
+                case 1: // 1: 曜日無し（年月日、時間、分、秒）
+                    dateStyle = "position: fixed; left: 17px; top: 10px; font-size: 40px;";
+                    timeStyle = "position: fixed; left: 10px; top: 50px; font-size: 70px;";
+                    break;
+
+                // 日付けのみ表示
+                case 2: // 2: 日付けのみ＋曜日（年月日、曜日）
+                    dateStyle = "position: fixed; left: 15px; top: 10px; font-size: 31px;";
+                    timeStyle = "display: none;";
+                    break;
+
+                case 3: // 3: 日付けのみ（年月日）
+                    dateStyle = "position: fixed; left: 15px; top: 10px; font-size: 40px;";
+                    timeStyle = "display: none;";
+                    break;
+
+                // 時間のみ表示
+                case 4: // 4: 時間のみ（時間、分、秒）
+                    dateStyle = "display: none";
+                    timeStyle = "position: fixed; left: 10px; top: 50px; font-size: 70px;";
+                    break;
+
+                case 5: // 5: 時間のみ＋ミリ秒付き（時間、分、秒、ミリ秒）
+                    dateStyle = "display: none";
+                    timeStyle = "position: fixed; left: 10px; top: 10px; font-size: 70px;";
+                    break;
+            }
+
+            // 各種パラメーターの設定
+            clockDateWBorder.setAttribute(attrStyle, dateStyle);
+            clockDateNoBorder.setAttribute(attrStyle, dateStyle);
+            clockTimeWBorder.setAttribute(attrStyle, timeStyle);
+            clockTimeNoBorder.setAttribute(attrStyle, timeStyle);
+        }
+
+        function isShowWeekday() {
+            return showPattern == 0 || showPattern == 2;
+        }
+
+        function isShowMilliSeconds() {
+            return showPattern == 5;
+        }
+
+        function initDateTimeDisplay(_timeDiffInHour) {
+            let dateIDs = ["clockDateWBorder", "clockDateNoBorder"];
+            let timeIDs = ["clockTimeWBorder", "clockTimeNoBorder"];
+
+            // 日付け情報を初期化する
+            let date = getLocalDate(_timeDiffInHour);
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+            let weekday = getWeekdayInShortJa(date.getDay());
+            let hour = date.getHours();
+            let minutes = date.getMinutes();
+            let sec = date.getSeconds();
+            let milliSecond = date.getMilliseconds();
+
+            // 日付け文字列
+            let dateInfo
+                = year + "年"
+                + formatTo2DigitText(month) + "月"
+                + formatTo2DigitText(day) + "日";
+            if (isShowWeekday()) {
+                dateInfo += "（" + weekday + "）";
+            }
+
+            // 時間文字列
+            let timeInfo
+                = formatTo2DigitText(hour) + ":"
+                + formatTo2DigitText(minutes) + ":"
+                + formatTo2DigitText(sec);
+            if (isShowMilliSeconds()) {
+                timeInfo += ":" + formatTo3DigitText(milliSecond);
+            }
+
+            // 時間データを画面に反映させる
+            for (var i = 0; i < dateIDs.length; i++) {
+                document.getElementById(dateIDs[i]).innerHTML = (dateInfo);
+            }
+            for (var i = 0; i < timeIDs.length; i++) {
+                document.getElementById(timeIDs[i]).innerHTML = (timeInfo);
+            }
+        }
+    </script>
+</body>
+
+</html>
