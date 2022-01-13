@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="./../css/clock.css">
+    <link rel="stylesheet" href="./../css/fontSetting.css">
     <script src="./../lib/jquery-3.6.0.min.js"></script>
     <script src="./../lib/jquery.transit.min.js"></script>
 
@@ -43,56 +43,88 @@
             var clockTimeWBorder = document.getElementById("clockTimeWBorder");
             var clockTimeNoBorder = document.getElementById("clockTimeNoBorder");
 
+            // 各種スタイル用の変数定義
             var attrStyle = "style";
-            // デフォルト設定
             var dateStyle = "";
             var timeStyle = "";
 
+            var fontSizeDate = forceTextSizeDate;
+            var fontSizeTime = forceTextSizeTime;
+
             switch (showPattern) {
-                // 日付け＋時間を両方表示
+                // 0-1: 日付け＋時間を両方表示
                 case 0: // 0: 基本セット（年月日、曜日、時間、分、秒）
                 default:
-                    dateStyle = "position: fixed; left: 15px; top: 10px; font-size: 31px;";
-                    timeStyle = "position: fixed; left: 10px; top: 50px; font-size: 70px;";
+                    fontSizeDate = fontSizeDate == 0 ? 31 : fontSizeDate;
+                    fontSizeTime = fontSizeTime == 0 ? 70 : fontSizeTime;
+
+                    dateStyle = "left: 15px; top: 10px; font-size: " + fontSizeDate + "px;";
+                    timeStyle = "left: 10px; top: " + (10 + fontSizeDate + marginBetweenDateAndTime) + "px; font-size: " + fontSizeTime + "px;";
                     break;
 
                 case 1: // 1: 曜日無し（年月日、時間、分、秒）
-                    dateStyle = "position: fixed; left: 17px; top: 10px; font-size: 40px;";
-                    timeStyle = "position: fixed; left: 10px; top: 50px; font-size: 70px;";
+                    fontSizeDate = fontSizeDate == 0 ? 40 : fontSizeDate;
+                    fontSizeTime = fontSizeTime == 0 ? 70 : fontSizeTime;
+
+                    dateStyle = "left: 17px; top: 10px; font-size: " + fontSizeDate + "px;";
+                    timeStyle = "left: 10px; top: " + (10 + fontSizeDate + marginBetweenDateAndTime) + "px; font-size: " + fontSizeTime + "px;";
                     break;
 
-                // 日付けのみ表示
+                // 2-3: 日付けのみ表示
                 case 2: // 2: 日付けのみ＋曜日（年月日、曜日）
-                    dateStyle = "position: fixed; left: 15px; top: 10px; font-size: 31px;";
+                    fontSizeDate = fontSizeDate == 0 ? 31 : fontSizeDate;
+
+                    dateStyle = "left: 15px; top: 10px; font-size: " + fontSizeDate + "px;";
                     timeStyle = "display: none;";
                     break;
 
                 case 3: // 3: 日付けのみ（年月日）
-                    dateStyle = "position: fixed; left: 15px; top: 10px; font-size: 40px;";
+                    fontSizeDate = fontSizeDate == 0 ? 40 : fontSizeDate;
+
+                    dateStyle = "left: 15px; top: 10px; font-size: " + fontSizeDate + "px;";
                     timeStyle = "display: none;";
                     break;
 
-                // 時間のみ表示
+                // 4-5: 時間のみ表示
                 case 4: // 4: 時間のみ（時間、分、秒）
-                    dateStyle = "display: none";
-                    timeStyle = "position: fixed; left: 10px; top: 10px; font-size: 70px;";
+                    fontSizeTime = fontSizeTime == 0 ? 70 : fontSizeTime;
+
+                    dateStyle = "display: none;";
+                    timeStyle = "left: 10px; top: 10px; font-size: " + fontSizeTime + "px;";
                     break;
 
                 case 5: // 5: 時間のみ＋ミリ秒付き（時間、分、秒、ミリ秒）
-                    dateStyle = "display: none";
-                    timeStyle = "position: fixed; left: 10px; top: 10px; font-size: 70px;";
+                    fontSizeTime = fontSizeTime == 0 ? 70 : fontSizeTime;
+
+                    dateStyle = "display: none;";
+                    timeStyle = "left: 10px; top: 10px; font-size: " + fontSizeTime + "px;";
                     break;
             }
 
+            // 日付けの共通設定
+            var dateStyleNoBorder =
+                dateStyle
+                + "color: " + textColor + "; "
+                + "margin: 0em 0px; position: fixed;";
+            var dateStyleWithBorder = dateStyleNoBorder + "-webkit-text-stroke: " + textBorderSize + "px " + textBorderColor + "; ";
+
+            // 時間の共通設定
+            var timeStyleNoBorder =
+                timeStyle
+                + "color: " + textColor + "; "
+                + "margin: 0em 0px; position: fixed;";
+            var timeStyleWithBorder = timeStyleNoBorder + "-webkit-text-stroke: " + textBorderSize + "px " + textBorderColor + "; ";
+
             // 各種パラメーターの設定
-            clockDateWBorder.setAttribute(attrStyle, dateStyle);
-            clockDateNoBorder.setAttribute(attrStyle, dateStyle);
-            clockTimeWBorder.setAttribute(attrStyle, timeStyle);
-            clockTimeNoBorder.setAttribute(attrStyle, timeStyle);
+            clockDateWBorder.setAttribute(attrStyle, dateStyleWithBorder);
+            clockDateNoBorder.setAttribute(attrStyle, dateStyleNoBorder);
+            clockTimeWBorder.setAttribute(attrStyle, timeStyleWithBorder);
+            clockTimeNoBorder.setAttribute(attrStyle, timeStyleNoBorder);
         }
 
         function isShowWeekday() {
-            return showPattern == 0 || showPattern == 2;
+            if (showPattern <= 5) return showPattern == 0 || showPattern == 2;
+            return true; // showPatternが5以上の場合は不正な値として、デフォルト表示の設定を反映させる
         }
 
         function isShowMilliSeconds() {
