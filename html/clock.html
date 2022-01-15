@@ -51,11 +51,14 @@
             var fontSizeDate = forceTextSizeDate;
             var fontSizeTime = forceTextSizeTime;
 
+            var isJaFormat = dateFormatPattern == 0; // 日本語表記か（日英表記で文字数や横幅が代わるため）
+
             switch (showPattern) {
                 // 0-1: 日付け＋時間を両方表示
                 case 0: // 0: 基本セット（年月日、曜日、時間、分、秒）
                 default:
-                    fontSizeDate = fontSizeDate == 0 ? 31 : fontSizeDate;
+
+                    fontSizeDate = fontSizeDate == 0 ? (isJaFormat ? 31 : 35) : fontSizeDate;
                     fontSizeTime = fontSizeTime == 0 ? 70 : fontSizeTime;
 
                     dateStyle = "left: 15px; top: 10px; font-size: " + fontSizeDate + "px;";
@@ -63,7 +66,7 @@
                     break;
 
                 case 1: // 1: 曜日無し（年月日、時間、分、秒）
-                    fontSizeDate = fontSizeDate == 0 ? 40 : fontSizeDate;
+                    fontSizeDate = fontSizeDate == 0 ? (isJaFormat ? 40 : 52) : fontSizeDate;
                     fontSizeTime = fontSizeTime == 0 ? 70 : fontSizeTime;
 
                     dateStyle = "left: 17px; top: 10px; font-size: " + fontSizeDate + "px;";
@@ -72,14 +75,14 @@
 
                 // 2-3: 日付けのみ表示
                 case 2: // 2: 日付けのみ＋曜日（年月日、曜日）
-                    fontSizeDate = fontSizeDate == 0 ? 31 : fontSizeDate;
+                    fontSizeDate = fontSizeDate == 0 ? (isJaFormat ? 31 : 35) : fontSizeDate;
 
                     dateStyle = "left: 15px; top: 10px; font-size: " + fontSizeDate + "px;";
                     timeStyle = "display: none;";
                     break;
 
                 case 3: // 3: 日付けのみ（年月日）
-                    fontSizeDate = fontSizeDate == 0 ? 40 : fontSizeDate;
+                    fontSizeDate = fontSizeDate == 0 ? (isJaFormat ? 40 : 52) : fontSizeDate;
 
                     dateStyle = "left: 15px; top: 10px; font-size: " + fontSizeDate + "px;";
                     timeStyle = "display: none;";
@@ -138,30 +141,50 @@
             // 日付け情報を初期化する
             let date = getLocalDate(_timeDiffInHour);
             let year = date.getFullYear();
-            let month = date.getMonth() + 1;
-            let day = date.getDate();
-            let weekday = getWeekdayInShortJa(date.getDay());
-            let hour = date.getHours();
-            let minutes = date.getMinutes();
-            let sec = date.getSeconds();
-            let milliSecond = date.getMilliseconds();
+            let month = formatTo2DigitText(date.getMonth() + 1);
+            let day = formatTo2DigitText(date.getDate());
+            let weekdayJa = getWeekdayInShortJa(date.getDay());
+            let weekdayEn = getWeekdayInShortEn(date.getDay());
+            let hour = formatTo2DigitText(date.getHours());
+            let minutes = formatTo2DigitText(date.getMinutes());
+            let sec = formatTo2DigitText(date.getSeconds());
+            let milliSecond = formatTo3DigitText(date.getMilliseconds());
 
-            // 日付け文字列
-            let dateInfo
-                = year + "年"
-                + formatTo2DigitText(month) + "月"
-                + formatTo2DigitText(day) + "日";
-            if (isShowWeekday()) {
-                dateInfo += "（" + weekday + "）";
-            }
+            // 日付け・時間の文字列設定
+            let dateInfo = "";
+            let timeInfo = "";
 
-            // 時間文字列
-            let timeInfo
-                = formatTo2DigitText(hour) + ":"
-                + formatTo2DigitText(minutes) + ":"
-                + formatTo2DigitText(sec);
-            if (isShowMilliSeconds()) {
-                timeInfo += ":" + formatTo3DigitText(milliSecond);
+            switch (dateFormatPattern) {
+                case 0: // yyyy年mm月dd日（a） 例）2022年01月23日（日）
+                default:
+                    // 日付設定
+                    dateInfo = year + "年" + month + "月" + day + "日";
+                    if (isShowWeekday()) dateInfo += "（" + weekdayJa + "）";
+
+                    // 時間設定
+                    timeInfo = hour + ":" + minutes + ":" + sec;
+                    if (isShowMilliSeconds()) timeInfo += ":" + milliSecond;
+                    break;
+
+                case 1: // mm/dd/yyyy (a)     例）01/23/2022 (Sun)
+                    // 日付設定
+                    dateInfo = month + "/" + day + "/" + year;
+                    if (isShowWeekday()) dateInfo += " (" + weekdayEn + ")";
+
+                    // 時間設定
+                    timeInfo = hour + ":" + minutes + ":" + sec;
+                    if (isShowMilliSeconds()) timeInfo += ":" + milliSecond;
+                    break;
+
+                case 2: // dd/mm/yyyy (a)     例）23/01/2022 (Sun)
+                    // 日付設定
+                    dateInfo = day + "/" + month + "/" + year;
+                    if (isShowWeekday()) dateInfo += " (" + weekdayEn + ")";
+
+                    // 時間設定
+                    timeInfo = hour + ":" + minutes + ":" + sec;
+                    if (isShowMilliSeconds()) timeInfo += ":" + milliSecond;
+                    break;
             }
 
             // 時間データを画面に反映させる

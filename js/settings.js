@@ -82,3 +82,12 @@ const forceTextSizeTime = 0;
 // 間隔を狭めたい場合は「-10」等の0以下の小さい値を指定してください
 // 指定をしない場合は「const marginBetweenDateAndTime = 0;」としてください
 const marginBetweenDateAndTime = 0;
+
+// 9. 年月日の表記フォーマットを指定する
+//
+// 0: 基本セット:     yyyy年mm月dd日（a） 例）2022年01月23日（日）
+// 1: アメリカ式表記: mm/dd/yyyy (a)     例）01/23/2022 (Sun)
+// 2: イギリス式表記: dd/mm/yyyy (a)     例）23/01/2022 (Sun)
+// 
+// 初期値は0が指定されています
+const dateFormatPattern = 0;
