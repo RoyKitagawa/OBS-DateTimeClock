@@ -1,7 +1,7 @@
 For English ReadMe, please view [README_EN.md](./README_EN.md)
 
 <a id="anchor1"></a>
-# OBS用時計の概要  
+# OBS時計の概要  
 こちらはOBSを用いた配信などで配信画面に現在の時刻を表示するための時計となっています  
 
 ※表示サンプル  
@@ -24,7 +24,7 @@ For English ReadMe, please view [README_EN.md](./README_EN.md)
     
     
 # 目次
-1. [OBS用時計の概要](#anchor1)
+1. [OBS時計の概要](#anchor1)
 7. [OBS上でソースコードを取り込む方法](#anchor2)
 2. [各種カスタマイズについて（概要）](#anchor3)
 3. [日時の表記パターンの設定について](#anchor4)
