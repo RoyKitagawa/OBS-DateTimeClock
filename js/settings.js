@@ -91,3 +91,4 @@ const marginBetweenDateAndTime = 0;
 // 
 // 初期値は0が指定されています
 const dateFormatPattern = 0;
+
