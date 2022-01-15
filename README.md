@@ -1,3 +1,5 @@
+For English ReadMe, please view [README_EN.md](./README_EN.md)
+
 <a id="anchor1"></a>
 # OBS用時計の概要  
 こちらはOBSを用いた配信などで配信画面に現在の時刻を表示するための時計となっています  
@@ -13,6 +15,7 @@
 2. フォントファイルの調整  
 3. タイムゾーン（時差）の調整  
 4. 文字の色やサイズ、縁取りの太さや色の調整  
+5. 年月日の表示形式（yyyy年mm月dd日, mm/dd/yyyy, dd/mm/yyyy）
    
 
 # 目次
@@ -58,29 +61,29 @@
 3: 日付けのみ（年月日）  
 4: 時間のみ（時間、分、秒）  
 5: 時間のみ＋ミリ秒付き（時間、分、秒、ミリ秒）  
-
+※年月日の表記方法の指定は後述の[年月日の表記フォーマットを指定する方法](#anchor8)をご参照ください  
+  
 ### 表示サンプル  
 ※実際の背景は透過となっています
 
 0: 基本セット（年月日、曜日、時間、分、秒）  
 ![時計1](https://user-images.githubusercontent.com/78025620/149194479-4bdffcfa-c8d3-41a4-879f-2fd036b9a10f.png)  
-
+  
 1: 曜日無し（年月日、時間、分、秒）  
 ![image](https://user-images.githubusercontent.com/78025620/149194569-d9110e0d-1955-45ee-8747-d4db1d6bfb7a.png)  
-
+  
 2: 日付けのみ＋曜日（年月日、曜日）  
 ![image](https://user-images.githubusercontent.com/78025620/149194709-7a057b2e-cb4a-40b9-a5c6-e1ca1e8e4f87.png)  
-
+  
 3: 日付けのみ（年月日）  
 ![image](https://user-images.githubusercontent.com/78025620/149194754-525057e3-b3ca-4f0b-b469-53cf5f08afd2.png)  
-
+  
 4: 時間のみ（時間、分、秒）  
 ![image](https://user-images.githubusercontent.com/78025620/149194911-3f66b45b-5f01-46d8-97b1-892bce3e1b24.png)
-
-
+  
 5: 時間のみ＋ミリ秒付き（時間、分、秒、ミリ秒）  
 ![image](https://user-images.githubusercontent.com/78025620/149194804-2e07cdb6-fa03-42c7-a10d-866d4782787a.png)  
-
+  
 
 ### 表示タイプの変更方法
 ```js/settings.js```内の```const showPattern = 0```という文章の0を任意の表示タイプに変更してください。  
@@ -91,7 +94,7 @@
 本ソフトウェアでは任意の時差を指定することができます  
   
 ### 時差の設定方法  
-```js/settings.js```内の```const timeDiffsInHour = 9```という文章の0を任意の表示タイプに変更してください。  
+```js/settings.js```内の```const timeDiffsInHour = 9```という文章の9を任意の表示タイプに変更してください。  
 ※日本の時差はUTC+9なため、デフォルトの設定は9となっています  
 ![image](https://user-images.githubusercontent.com/78025620/149195197-41f0bf39-5a84-40a3-a4cc-6d36fde096f0.png)  
 
@@ -109,25 +112,25 @@
 
 ### PCにインストール済みのフォントを指定する方法について
 ```css/fontSettings.css```内の以下の記述を確認、及び必要に応じて調整します。  
-
-```css/fontSettings.css```の初期内容
-![image](https://user-images.githubusercontent.com/78025620/149371745-534c0476-9685-4fe7-9571-7560f85b5e01.png)
-
-以下の内容ですと、「07にくまるフォント」がPCにインストールされていれば「07にくまるフォント」が適用されます。  
+  
+```css/fontSettings.css```の初期内容  
+![image](https://user-images.githubusercontent.com/78025620/149371745-534c0476-9685-4fe7-9571-7560f85b5e01.png)  
+  
+上記内容ですと、「07にくまるフォント」がPCにインストールされていれば「07にくまるフォント」が適用されます。  
 また、もし「07にくまるフォント」が未インストールの場合は「HGP創英角ﾎﾟｯﾌﾟ体」を確認、それも未インストールなら「けいふぉんと」を、  
-という風に左から順にみてインストール済みのフォントがあればそのフォントが適用されます。
-
-そのためサンプル画像の通りの見た目表示する場合は、以下のサイトからにくまるフォントをダウンロード、インストールいただく必要があります。
-
-にくまるフォント様公式サイト  
-http://www.fontna.com/freefont/1651/  
+という風に左から順にみてインストール済みのフォントがあればそのフォントが適用されます。  
+  
+そのためサンプル画像の通りの見た目表示する場合は、以下のサイトからにくまるフォントをダウンロード、インストールいただく必要があります。  
+  
+にくまるフォント様公式サイト   
+http://www.fontna.com/freefont/1651/   
 
 #### 別のインストール済みのフォントを指定したい場合
-にくまるフォント以外のフォントを優先したい場合、また別の任意のフォントを指定したい場合、記述を編集する必要があります。
-仮に「カスタムフォント」という名前のフォントを使用したい場合、以下のような記述に変更します。
-
-![image](https://user-images.githubusercontent.com/78025620/149373008-4488b22f-58d2-408d-ab06-b2a0b1f98663.png)
-
+にくまるフォント以外のフォントを優先したい場合、また別の任意のフォントを指定したい場合、記述を編集する必要があります。  
+仮に「カスタムフォント」という名前のフォントを使用したい場合、以下のような記述に変更します。  
+  
+![image](https://user-images.githubusercontent.com/78025620/149373008-4488b22f-58d2-408d-ab06-b2a0b1f98663.png)  
+  
 ### 未インストールのフォント・フォントファイルを直接指定する方法について
 何らかの事情でPCにフォントがインストールできない場合、またフォントファイルを本プロジェクト内で管理する方法も可能です。  
   
@@ -205,7 +208,7 @@ http://www.fontna.com/freefont/1651/
 ![image](https://user-images.githubusercontent.com/78025620/149375900-b4e0c1cb-39c5-4a86-8fc1-8a568a769f28.png)  
   
 例）フォントのサイズを100に指定した場合  
-![image](https://user-images.githubusercontent.com/78025620/149377030-a8351464-3096-4aef-a6c0-622cefe3920f.png)
+![image](https://user-images.githubusercontent.com/78025620/149605070-bb42bc6d-5b29-4c47-837e-69d455b962d5.png)
 ![image](https://user-images.githubusercontent.com/78025620/149377370-d6c51f1a-97f0-474e-8d18-093fdf042b9b.png)　　
 
 ### 8. 日付の行と時間の行の間隔を指定する
@@ -214,5 +217,21 @@ http://www.fontna.com/freefont/1651/
 ![image](https://user-images.githubusercontent.com/78025620/149375900-b4e0c1cb-39c5-4a86-8fc1-8a568a769f28.png)  
   
 例）行間隔を20に指定した場合  
-![image](https://user-images.githubusercontent.com/78025620/149377030-a8351464-3096-4aef-a6c0-622cefe3920f.png)
-![image](https://user-images.githubusercontent.com/78025620/149377684-60f5b9b9-3052-43ad-bdb6-5e646e868c11.png)  
+![image](https://user-images.githubusercontent.com/78025620/149605032-faeedeb2-36b8-4076-a2a0-0d0a331f3167.png)
+![image](https://user-images.githubusercontent.com/78025620/149377684-60f5b9b9-3052-43ad-bdb6-5e646e868c11.png)    
+
+<a id="anchor8"></a>
+### 9. 年月日の表記フォーマットを指定する
+日付のフォーマットの表記を日本式、アメリカ式、イギリス式で変更することができます  
+※デフォルトは日本式の「yyyy年mm月dd日（a）」が指定されています
+![image](https://user-images.githubusercontent.com/78025620/149604958-e9f6b551-9f30-4ffd-b2ec-660d6228af77.png)
+![image](https://user-images.githubusercontent.com/78025620/149605123-33578229-88a0-4979-8937-f480314a0ed8.png)    
+    
+例）年月日表記フォーマットを1に指定した場合（アメリカ式の「mm/dd/yyyy (a)」表記）  
+![image](https://user-images.githubusercontent.com/78025620/149604974-506d42e6-27e0-42d8-93ea-9ac92530cc85.png)
+![image](https://user-images.githubusercontent.com/78025620/149605133-eb99a61d-9c86-40ae-a907-7b463aaeaf79.png)    
+  
+例）年月日表記フォーマットを2に指定した場合（イギリス式の「dd/mm/yyyy (a)」表記）    
+![image](https://user-images.githubusercontent.com/78025620/149608705-ba71b548-6cdd-4a3f-ba42-91f0bab7400f.png)
+![image](https://user-images.githubusercontent.com/78025620/149605138-781ea8d6-39e5-4d4d-8991-d8a96d51842c.png)    
+  
