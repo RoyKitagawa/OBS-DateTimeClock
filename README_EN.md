@@ -5,8 +5,12 @@
 This software is a clock aimed to show the current date and time on the stream screen using OBS.  
 
 *Sample of the output  
-![時計1](https://user-images.githubusercontent.com/78025620/149194479-4bdffcfa-c8d3-41a4-879f-2fd036b9a10f.png)   
-
+![image](https://user-images.githubusercontent.com/78025620/149605123-33578229-88a0-4979-8937-f480314a0ed8.png)  
+  
+*The format of date display can be changed in below formats too.  
+![image](https://user-images.githubusercontent.com/78025620/149605133-eb99a61d-9c86-40ae-a907-7b463aaeaf79.png)
+![image](https://user-images.githubusercontent.com/78025620/149605138-781ea8d6-39e5-4d4d-8991-d8a96d51842c.png)  
+  
 Currently, this software allows following customization.  
 If you have any additional requests, please feel free to raise up on the issue on this repository.  
   
@@ -18,142 +22,144 @@ If you have any additional requests, please feel free to raise up on the issue o
 5. Adjust date display format (yyyy年mm月dd日, mm/dd/yyyy, dd/mm/yyyy)  
   
 # Index
-1. [About this OBS-DateTimeClock](#anchor1)
-7. [How to import this software into OBS](#anchor2)
-2. [About each customize feature (Summary)](#anchor3)
-3. [Setting date and time show patterns](#anchor4)
-4. [Setting time zone](#anchor5)
-5. [Setting fonts](#anchor6)
-6. [Other detailed settings](#anchor7)  
+1. [About this OBS-DateTimeClock](#anchor1)  
+7. [How to import this software into OBS](#anchor2)  
+2. [About each customize feature (Summary)](#anchor3)  
+3. [Setting date and time show patterns](#anchor4)  
+4. [Setting time zone](#anchor5)  
+5. [Setting fonts](#anchor6)  
+6. [Other detailed settings](#anchor7)    
   
-
+  
 <a id="anchor2"></a>
 ## How to import this software into OBS
-それではまずは本プロジェクトをOBS上で表示させる方法をご紹介します。  
-インストールされているフォントによっては見栄えがサンプルと違う風に表示される可能性もありますが、そちらは後述の[フォントの設定について](#anchor6)をご確認お願いいたします。  
+As start, let us introduce how to show this project in OBS for to use in streams.  
+Depending on the fonts installed in your PC, initial display may differ, for the details to adjust fonts, please see the section for [setting fonts](#anchor6) later.  
   
-### 本プロジェクトのダウンロード、及びOBSへの取り込む手順
-1. [プロジェクトページ](https://github.com/RoyKitagawa/OBS-DateTimeClock)からZipファイルをダウンロードし、任意の場所に解凍する
+### Steps to download this project, and import to OBS
+1. Download Zip file from [this project's page](https://github.com/RoyKitagawa/OBS-DateTimeClock), and unzip to any place in your PC.  
 ![image](https://user-images.githubusercontent.com/78025620/149198154-ad08545f-f9af-44ca-9786-64862252949e.png)  
-2. OBS上で「ブラウザ」のソースを追加  
+2. Add "Broser" source in OBS    
 ![OBS-1](https://user-images.githubusercontent.com/78025620/149194173-b8f09038-f792-4be9-ad82-53452c1fa352.png) ![OBS-2](https://user-images.githubusercontent.com/78025620/149194272-326b6820-42d5-42da-b103-b049bc077f21.png)
-3. 追加したブラウザソースの設定画面で「ローカルファイル」のチェックを入れる
-4. 「参照」ボタンからダウンロードしたこちらのプロジェクトの```html```フォルダ内にある```clock.html```を指定する
-5. 「表示されていないときにソースをシャットダウン」、及び「シーンがアクティブになったときにブラウザの表示を更新」にチェックを入れる
+3. Set the check on "Local File" in the setting screen of added browser source  
+4. From "Browse button", select ```clock.html``` file in ```html``` folder   
+5. Also set check in 2 checkbox at below, "Shutdown source when not displayed" and "Refresh browser display when scene is in active"  
 ![OBS-4](https://user-images.githubusercontent.com/78025620/149194357-fb0ade5c-e0dc-4ba7-8898-3306444145b5.png)
   
   
 <a id="anchor3"></a>
 ## About each customize feature (Summary)
-前述の通り、本ソフトウェアでは複数のカスタマイズが可能となっています。
-また配信者の方になるべく気軽に使っていただくため、変更が必要なファイルを以下の2ファイルのみに絞らせていただいています。
-1. ```js/settings.js```: 主に表示パターンや色コード、文字サイズ等を指定する場合に使用します  
-2. ```css/fontSettings.css```: フォントを指定する場合に使用します
+As shared previoudly, this software allows multiple customizations.  
+Also, to allow streamers to customize freely without less need of coding knowledge, user will ONLY need to see/update following 2 files to customize.  
+1. ```js/settings.js```: For adjusting show patterns, color code and text size.  
+2. ```css/fontSettings.css```: For adjusting fonts.  
 
 <a id="anchor4"></a>
 ## Setting date and time show patterns
-本ソフトウェアでは数パターンの日時の表記が選択できます  
-### 表示タイプ  
-0: 基本セット（年月日、曜日、時間、分、秒）  
-1: 曜日無し（年月日、時間、分、秒）  
-2: 日付けのみ＋曜日（年月日、曜日）  
-3: 日付けのみ（年月日）  
-4: 時間のみ（時間、分、秒）  
-5: 時間のみ＋ミリ秒付き（時間、分、秒、ミリ秒）  
-
-### 表示サンプル  
-※実際の背景は透過となっています
-
-0: 基本セット（年月日、曜日、時間、分、秒）  
+In this software, several patterns for date and time display can be selected.  
+### Display format  
+0: Basic set (Year/Month/Day, Weekday, Hour, Minutes, Seconds)  
+1: No weekday (Year/Month/Day, Hour, Minutes, Seconds)   
+2: Only date and weekday (Year/Month/Day, Weekday）  
+3: Only date (Year/Month/Day）    
+4: Only time (Hour, Minutes, Seconds)  
+5: Only time and milliseconds (Hour, Minutes, Seconds, Milliseconds)  
+*For adjustment of date formatl, please refer to [How to specify the date display format](#anchor8)
+  
+### Display sample 
+*Actual display will be transparent
+  
+0: Basic set (Year/Month/Day, Weekday, Hour, Minutes, Seconds)  
 ![時計1](https://user-images.githubusercontent.com/78025620/149194479-4bdffcfa-c8d3-41a4-879f-2fd036b9a10f.png)  
-
-1: 曜日無し（年月日、時間、分、秒）  
+  
+1: No weekday (Year/Month/Day, Hour, Minutes, Seconds)   
 ![image](https://user-images.githubusercontent.com/78025620/149194569-d9110e0d-1955-45ee-8747-d4db1d6bfb7a.png)  
-
-2: 日付けのみ＋曜日（年月日、曜日）  
+  
+2: Only date and weekday (Year/Month/Day, Weekday）  
 ![image](https://user-images.githubusercontent.com/78025620/149194709-7a057b2e-cb4a-40b9-a5c6-e1ca1e8e4f87.png)  
-
-3: 日付けのみ（年月日）  
+  
+3: Only date (Year/Month/Day）   
 ![image](https://user-images.githubusercontent.com/78025620/149194754-525057e3-b3ca-4f0b-b469-53cf5f08afd2.png)  
-
-4: 時間のみ（時間、分、秒）  
+  
+4: Only time (Hour, Minutes, Seconds)  
 ![image](https://user-images.githubusercontent.com/78025620/149194911-3f66b45b-5f01-46d8-97b1-892bce3e1b24.png)
-
-
-5: 時間のみ＋ミリ秒付き（時間、分、秒、ミリ秒）  
+  
+5: Only time and milliseconds (Hour, Minutes, Seconds, Milliseconds)  
 ![image](https://user-images.githubusercontent.com/78025620/149194804-2e07cdb6-fa03-42c7-a10d-866d4782787a.png)  
-
-
-### 表示タイプの変更方法
-```js/settings.js```内の```const showPattern = 0```という文章の0を任意の表示タイプに変更してください。  
+  
+  
+### How to specify display format  
+From the file ```js/settings.js```, please change the value "0" in ```const showPattern = 0``` to the value of expected format. 
+  
 ![image](https://user-images.githubusercontent.com/78025620/149195153-18081562-c3a0-4db2-9570-8311dda97579.png)  
   
 <a id="anchor5"></a>
-## 時差の設定について    
-本ソフトウェアでは任意の時差を指定することができます  
+## Setting time zone    
+In this software, timezone can be specified  
   
-### 時差の設定方法  
-```js/settings.js```内の```const timeDiffsInHour = 9```という文章の0を任意の表示タイプに変更してください。  
-※日本の時差はUTC+9なため、デフォルトの設定は9となっています  
-![image](https://user-images.githubusercontent.com/78025620/149195197-41f0bf39-5a84-40a3-a4cc-6d36fde096f0.png)  
+### How to specify time zone    
+From the file ```js/settings.js```, please change the value "9" in ```const timeDiffsInHour = 9``` to the value of expected time zone.  
+*As default, it is set to "9" since the Japan's time zone is UTC +9  
+![image](https://user-images.githubusercontent.com/78025620/149195197-41f0bf39-5a84-40a3-a4cc-6d36fde096f0.png)    
 
 <a id="anchor6"></a>
-## フォントの設定について  
-本ソフトウェアでは任意のフォントを指定することができます  
-※サンプル画像ではにくまるフォント様を使用させていただいています  
+## Setting fonts  
+In this software, any fonts can be specifed.  
+*In sample font called "Nikumaru font (にくまるフォント)" is used.  
+   
+To specify fonts in this software, there are 2 choices.    
+1. Specify font that is already installed in your PC *Recommended  
+2. Specify font by directly placing font file in the project folder  
   
-本ソフトウェアでフォントを指定する際、以下の2つの方法があります  
-1. PCにインストール済みのフォントを指定  
-2. フォントファイル（ttf,otf等）を直接プロジェクト内にコピーして指定   
+Since using the installed font will be more simple and easy, it will be more recommended to ones who are not very familiar with coding.  
+*And when setting fonts, the file ```css/fontSettings.css``` needs be checked and updated.
 
-基本的には1番の「PCにインストール済みのフォントを指定」が楽なため、開発に不慣れな方はそちらを推奨します。
-※また、フォントの設定を行う場合は```css/fontSettings.css```というファイルを編集します
+### How to specify font that is already installed in your PC
+For how the fonts are specified, please Check the contents in ```css/fontSettings.css```.  
+  
+Default content of ```css/fontSettings.css```  
+![image](https://user-images.githubusercontent.com/78025620/149371745-534c0476-9685-4fe7-9571-7560f85b5e01.png)  
+   
+In the above content, if "07にくまるフォント" (which is Nikumaru font) is installed, it will be applied.  
+If "07にくまるフォント" is not installed, the font on the right "HGP創英角ﾎﾟｯﾌﾟ体" will be appllied.  
+If "HGP創英角ﾎﾟｯﾌﾟ体" is also not installed, the font on the right "けいふぉんと" will be applied, and so on.  
+  
+The font on left has higher priority, and whatever that is installed on more left, will be applied.  
+So if you would like to use the same font with sample image, please visit website for Nikumaru font, to download and install Nikumaru font.  
 
-### PCにインストール済みのフォントを指定する方法について
-```css/fontSettings.css```内の以下の記述を確認、及び必要に応じて調整します。  
-
-```css/fontSettings.css```の初期内容
-![image](https://user-images.githubusercontent.com/78025620/149371745-534c0476-9685-4fe7-9571-7560f85b5e01.png)
-
-以下の内容ですと、「07にくまるフォント」がPCにインストールされていれば「07にくまるフォント」が適用されます。  
-また、もし「07にくまるフォント」が未インストールの場合は「HGP創英角ﾎﾟｯﾌﾟ体」を確認、それも未インストールなら「けいふぉんと」を、  
-という風に左から順にみてインストール済みのフォントがあればそのフォントが適用されます。
-
-そのためサンプル画像の通りの見た目表示する場合は、以下のサイトからにくまるフォントをダウンロード、インストールいただく必要があります。
-
-にくまるフォント様公式サイト  
+Official website for Nikumaru font  
 http://www.fontna.com/freefont/1651/  
 
-#### 別のインストール済みのフォントを指定したい場合
-にくまるフォント以外のフォントを優先したい場合、また別の任意のフォントを指定したい場合、記述を編集する必要があります。
-仮に「カスタムフォント」という名前のフォントを使用したい場合、以下のような記述に変更します。
+#### How to specify other installed fonts
+If you would like to specify other fonts, you will need to adjust the contents.  
+For example, lets say you have installed font called "MyCustomFont" into your PC, and in that case the content will be as follows.  
 
-![image](https://user-images.githubusercontent.com/78025620/149373008-4488b22f-58d2-408d-ab06-b2a0b1f98663.png)
-
-### 未インストールのフォント・フォントファイルを直接指定する方法について
-何らかの事情でPCにフォントがインストールできない場合、またフォントファイルを本プロジェクト内で管理する方法も可能です。  
+![image](https://user-images.githubusercontent.com/78025620/149607451-062d1772-c4b5-427e-b5ec-92380e70103f.png)  
   
-#### フォントファイルを直接している手順
-1. 指定したいフォントファイル(ttf, otf等）を用意し、本プロジェクト内の「fonts」フォルダに配置する  
-2. 設定を有効にするため、50行、58行目の記号を削除しコメントアウト状態を解除する  
-3. 53行目の「<fontsフォルダに配置したファイル名>」を配置したフォントファイル名に変更  
-   例）「07にくまるフォント.otf」をfontsファイルに配置した場合、以下のように変更します  
-       -> 「src: url(./../fonts/07にくまるフォント.otf);」  
-4. 27～29行のソースコードを全てコメントアウト、もしくは削除する  
+### How to specify fonts that are not installed / directly using font file  
+If for any reason you cannot install desired font, you can also specify font directly by placing font file in project folder.   
   
-手順2の初期状態のサンプル  
+#### Steps font files directly  
+1. Place font file (like ttf, otf files) in the "fonts" folder in this project.  
+2. To apply fonts delete symbols (```/*``` and ```*/```) in line 50 and 58, to undo comment out.  
+3. In line 53, change the content ```<fontsフォルダに配置したファイル名>``` to uploaded font file name.  
+   ie) if you place "MyCustomFont.otf" file in "fonts" folder, updated content will be as follow    
+       -> "src: url(./../fonts/MyCustomFont.otf);"  
+4. Comment out or delete source code in line 27 to 29.  
+    
+Sample of step 2 (Default status)  
 ![image](https://user-images.githubusercontent.com/78025620/149373880-34512ac7-217d-4317-b8da-7858825fced5.png)  
   
-手順3のコメントアウト解除、及びファイルの指定のサンプル  
+Sample of step 3, to undo comment out and specify target font file  
 ![image](https://user-images.githubusercontent.com/78025620/149374233-c9ce6013-4491-4494-903d-451165e951d2.png)  
 
-手順4のサンプル  
+Sample of step 4  
 ![image](https://user-images.githubusercontent.com/78025620/149374398-6ed77437-1b33-47c1-9290-800505dd2d13.png)  
 
 <a id="anchor7"></a>  
-## その他各種設定について
-フォント以外の設定は全て```js/settings.js```ファイルにまとめられています。  
-  
+## Other detailed settings
+Every setting other than font, is all placed in ```js/settings.js``` file.  
+    
 ```js/settings.js```に記述されている設定可能項目一覧  
 ![image](https://user-images.githubusercontent.com/78025620/149374804-0b675ba2-e4df-46f8-9c70-6d3fbfb2cf45.png)  
 
@@ -218,7 +224,8 @@ http://www.fontna.com/freefont/1651/
 例）行間隔を20に指定した場合  
 ![image](https://user-images.githubusercontent.com/78025620/149605032-faeedeb2-36b8-4076-a2a0-0d0a331f3167.png)
 ![image](https://user-images.githubusercontent.com/78025620/149377684-60f5b9b9-3052-43ad-bdb6-5e646e868c11.png)    
-
+  
+<a id="anchor8"></a>
 ### 9. 年月日の表記フォーマットを指定する
 日付のフォーマットの表記を日本式、アメリカ式、イギリス式で変更することができます  
 ※デフォルトは日本式の「yyyy年mm月dd日（a）」が指定されています
