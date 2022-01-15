@@ -15,6 +15,7 @@ For English ReadMe, please view [README_EN.md](./README_EN.md)
 2. フォントファイルの調整  
 3. タイムゾーン（時差）の調整  
 4. 文字の色やサイズ、縁取りの太さや色の調整  
+5. 年月日の表示形式（yyyy年mm月dd日, mm/dd/yyyy, dd/mm/yyyy）
    
 
 # 目次
@@ -207,7 +208,7 @@ http://www.fontna.com/freefont/1651/
 ![image](https://user-images.githubusercontent.com/78025620/149375900-b4e0c1cb-39c5-4a86-8fc1-8a568a769f28.png)  
   
 例）フォントのサイズを100に指定した場合  
-![image](https://user-images.githubusercontent.com/78025620/149377030-a8351464-3096-4aef-a6c0-622cefe3920f.png)
+![image](https://user-images.githubusercontent.com/78025620/149605070-bb42bc6d-5b29-4c47-837e-69d455b962d5.png)
 ![image](https://user-images.githubusercontent.com/78025620/149377370-d6c51f1a-97f0-474e-8d18-093fdf042b9b.png)　　
 
 ### 8. 日付の行と時間の行の間隔を指定する
@@ -216,5 +217,20 @@ http://www.fontna.com/freefont/1651/
 ![image](https://user-images.githubusercontent.com/78025620/149375900-b4e0c1cb-39c5-4a86-8fc1-8a568a769f28.png)  
   
 例）行間隔を20に指定した場合  
-![image](https://user-images.githubusercontent.com/78025620/149377030-a8351464-3096-4aef-a6c0-622cefe3920f.png)
-![image](https://user-images.githubusercontent.com/78025620/149377684-60f5b9b9-3052-43ad-bdb6-5e646e868c11.png)  
+![image](https://user-images.githubusercontent.com/78025620/149605032-faeedeb2-36b8-4076-a2a0-0d0a331f3167.png)
+![image](https://user-images.githubusercontent.com/78025620/149377684-60f5b9b9-3052-43ad-bdb6-5e646e868c11.png)    
+
+### 9. 年月日の表記フォーマットを指定する
+日付のフォーマットの表記を日本式、アメリカ式、イギリス式で変更することができます  
+※デフォルトは日本式の「yyyy年mm月dd日（a）」が指定されています
+![image](https://user-images.githubusercontent.com/78025620/149604958-e9f6b551-9f30-4ffd-b2ec-660d6228af77.png)
+![image](https://user-images.githubusercontent.com/78025620/149605123-33578229-88a0-4979-8937-f480314a0ed8.png)    
+    
+例）年月日表記フォーマットを1に指定した場合（アメリカ式の「mm/dd/yyyy (a)」表記）  
+![image](https://user-images.githubusercontent.com/78025620/149604974-506d42e6-27e0-42d8-93ea-9ac92530cc85.png)
+![image](https://user-images.githubusercontent.com/78025620/149605133-eb99a61d-9c86-40ae-a907-7b463aaeaf79.png)    
+  
+例）年月日表記フォーマットを2に指定した場合（イギリス式の「dd/mm/yyyy (a)」表記）    
+![image](https://user-images.githubusercontent.com/78025620/149605016-872da544-a823-4edf-beac-f1fb633ecf6d.png)
+![image](https://user-images.githubusercontent.com/78025620/149605138-781ea8d6-39e5-4d4d-8991-d8a96d51842c.png)    
+  
