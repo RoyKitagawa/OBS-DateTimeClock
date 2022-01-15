@@ -162,5 +162,32 @@ function getWeekdayInShortJa(_dayOfWeek) {
         default:
             return "";
     }
+}
+
+/**
+ * 曜日の情報を英語短縮表記で取得する
+ * @param {*} _dayOfWeek 
+ * @returns 
+ */
+function getWeekdayInShortEn(_dayOfWeek) {
+    switch (_dayOfWeek) {
+        case 1:
+            return "Mon";
+        case 2:
+            return "Tue";
+        case 3:
+            return "Wed";
+        case 4:
+            return "Thu";
+        case 5:
+            return "Fri";
+        case 6:
+            return "Sat";
+        case 7:
+            return "Sun";
+        default:
+            return "";
+    }
 
 }
+
