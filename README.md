@@ -1,3 +1,5 @@
+For English ReadMe, please view [README_EN.md](./README_EN.md)
+
 <a id="anchor1"></a>
 # OBS用時計の概要  
 こちらはOBSを用いた配信などで配信画面に現在の時刻を表示するための時計となっています  
