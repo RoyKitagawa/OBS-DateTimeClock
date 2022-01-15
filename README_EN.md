@@ -1,22 +1,23 @@
-<a id="anchor1"></a>
-# OBS用時計の概要  
-こちらはOBSを用いた配信などで配信画面に現在の時刻を表示するための時計となっています  
+日本語版のReadMeは[README.md](./README.md)をご参照ください。
 
-※表示サンプル  
+<a id="anchor1"></a>
+# About this OBS-DateTimeClock  
+This software is a clock aimed to show the current date and time on the stream screen using OBS.  
+
+*Sample of the output  
 ![時計1](https://user-images.githubusercontent.com/78025620/149194479-4bdffcfa-c8d3-41a4-879f-2fd036b9a10f.png)   
 
-また現状は以下の各種カスタマイズ機能に対応しております
-追加の要望等ございましたら、Issueに起票をお願いいたします。
+Currently, this software allows following customization.  
+If you have any additional requests, please feel free to raise up on the issue on this repository.  
   
-## 対応カスタマイズ機能一覧
-1. 表示内容の調整（日付のみの表示、時間のみの表示、ミリ秒表記など複数パターンがあります）  
-2. フォントファイルの調整  
-3. タイムゾーン（時差）の調整  
-4. 文字の色やサイズ、縁取りの太さや色の調整  
-   
-
-# 目次
-1. [OBS用時計の概要](#anchor1)
+## Customize target features
+1. Adjust visual output (There are several pattern such as only date, only time, and millisecond display)    
+2. Adjust font file  
+3. Adjust time zone    
+4. Adjust text size and color, text border width and color   
+  
+# Index
+1. [About this OBS-DateTimeClock](#anchor1)
 7. [OBS上でソースコードを取り込む方法](#anchor2)
 2. [各種カスタマイズについて（概要）](#anchor3)
 3. [日時の表記パターンの設定について](#anchor4)
