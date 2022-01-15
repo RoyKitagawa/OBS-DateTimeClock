@@ -61,29 +61,29 @@ For English ReadMe, please view [README_EN.md](./README_EN.md)
 3: 日付けのみ（年月日）  
 4: 時間のみ（時間、分、秒）  
 5: 時間のみ＋ミリ秒付き（時間、分、秒、ミリ秒）  
-
+※年月日の表記方法の指定は後述の[年月日の表記フォーマットを指定する方法](#anchor8)をご参照ください
+  
 ### 表示サンプル  
 ※実際の背景は透過となっています
 
 0: 基本セット（年月日、曜日、時間、分、秒）  
 ![時計1](https://user-images.githubusercontent.com/78025620/149194479-4bdffcfa-c8d3-41a4-879f-2fd036b9a10f.png)  
-
+  
 1: 曜日無し（年月日、時間、分、秒）  
 ![image](https://user-images.githubusercontent.com/78025620/149194569-d9110e0d-1955-45ee-8747-d4db1d6bfb7a.png)  
-
+  
 2: 日付けのみ＋曜日（年月日、曜日）  
 ![image](https://user-images.githubusercontent.com/78025620/149194709-7a057b2e-cb4a-40b9-a5c6-e1ca1e8e4f87.png)  
-
+  
 3: 日付けのみ（年月日）  
 ![image](https://user-images.githubusercontent.com/78025620/149194754-525057e3-b3ca-4f0b-b469-53cf5f08afd2.png)  
-
+  
 4: 時間のみ（時間、分、秒）  
 ![image](https://user-images.githubusercontent.com/78025620/149194911-3f66b45b-5f01-46d8-97b1-892bce3e1b24.png)
-
-
+  
 5: 時間のみ＋ミリ秒付き（時間、分、秒、ミリ秒）  
 ![image](https://user-images.githubusercontent.com/78025620/149194804-2e07cdb6-fa03-42c7-a10d-866d4782787a.png)  
-
+  
 
 ### 表示タイプの変更方法
 ```js/settings.js```内の```const showPattern = 0```という文章の0を任意の表示タイプに変更してください。  
@@ -220,6 +220,7 @@ http://www.fontna.com/freefont/1651/
 ![image](https://user-images.githubusercontent.com/78025620/149605032-faeedeb2-36b8-4076-a2a0-0d0a331f3167.png)
 ![image](https://user-images.githubusercontent.com/78025620/149377684-60f5b9b9-3052-43ad-bdb6-5e646e868c11.png)    
 
+<a id="anchor8"></a>
 ### 9. 年月日の表記フォーマットを指定する
 日付のフォーマットの表記を日本式、アメリカ式、イギリス式で変更することができます  
 ※デフォルトは日本式の「yyyy年mm月dd日（a）」が指定されています
