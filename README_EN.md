@@ -20,7 +20,13 @@ If you have any additional requests, please feel free to raise up on the issue o
 3. Adjust time zone    
 4. Adjust text size and color, text border width and color   
 5. Adjust date display format (yyyy年mm月dd日, mm/dd/yyyy, dd/mm/yyyy)  
-  
+
+
+### Please be aware of followings when using the customization feature  
+*In some of the customize features, it requires to edit ```settings.js``` file in ```js``` folder.  
+*This file is not a plain text file, so if you do not have any editor tool for coding, please RIGHT CLICK the file, and select "Open from program" and select notepad or similar kind of text editor tools.  
+![image](https://user-images.githubusercontent.com/78025620/149616580-86c2cf83-c5e5-424f-ae50-e7bdac6e961d.png)  
+    
 # Index
 1. [About this OBS-DateTimeClock](#anchor1)  
 7. [How to import this software into OBS](#anchor2)  
