@@ -64,7 +64,7 @@ In this software, several patterns for date and time display can be selected.
 3: Only date (Year/Month/Day）    
 4: Only time (Hour, Minutes, Seconds)  
 5: Only time and milliseconds (Hour, Minutes, Seconds, Milliseconds)  
-*For adjustment of date formatl, please refer to [How to specify the date display format](#anchor8)
+*For adjustment of date formatl, please refer the section [Specify date display format](#anchor8)
   
 ### Display sample 
 *Actual display will be transparent
@@ -151,7 +151,7 @@ Sample of step 2 (Default status)
 ![image](https://user-images.githubusercontent.com/78025620/149373880-34512ac7-217d-4317-b8da-7858825fced5.png)  
   
 Sample of step 3, to undo comment out and specify target font file  
-![image](https://user-images.githubusercontent.com/78025620/149374233-c9ce6013-4491-4494-903d-451165e951d2.png)  
+![image](https://user-images.githubusercontent.com/78025620/149607903-a65aec76-b462-48dd-a0ff-32aa23558b20.png)  
 
 Sample of step 4  
 ![image](https://user-images.githubusercontent.com/78025620/149374398-6ed77437-1b33-47c1-9290-800505dd2d13.png)  
@@ -160,83 +160,93 @@ Sample of step 4
 ## Other detailed settings
 Every setting other than font, is all placed in ```js/settings.js``` file.  
     
-```js/settings.js```に記述されている設定可能項目一覧  
-![image](https://user-images.githubusercontent.com/78025620/149374804-0b675ba2-e4df-46f8-9c70-6d3fbfb2cf45.png)  
-
-### 1. 日付や時間の表示フォーマット設定
-前述の[Setting date and time show patterns](#anchor4)をご確認ください。  
-
-### 2. 時差の設定
-前述の[時差の設定について](#anchor5)をご確認ください。  
+Each settings specified in ```js/settings.js``` are as follows.  
+1. Specify display format of date and time    
+2. Specify time zone    
+3. Specify text border width  
+4. Specify text border color  
+5. Specify text color  
+6. Specify text size of date  
+7. Specify text size of time  
+8. Specify margin between date row and time row  
+9. Specify date display format  
   
-### 3. 文字の縁取り（縁の太さ）設定
-こちらの数値を指定することで縁取りの太さを変更することができます  
+  
+### 1. Specify display format of date and time  
+Please refer to previous [Setting date and time show patterns](#anchor4)    
+  
+### 2. Specify time zone  
+Please refer to previous [Setting time zone](#anchor5)  
+  
+### 3. Specify text border size  
+By changing below values, text border size can be adjusted.  
 ![image](https://user-images.githubusercontent.com/78025620/149375419-907e023a-743e-4e0c-a48a-5dbc74c79a4f.png)
 ![image](https://user-images.githubusercontent.com/78025620/149375900-b4e0c1cb-39c5-4a86-8fc1-8a568a769f28.png)  
   
-例）縁のサイズを30に指定した場合  
+ie) Sample of changing text border size to 30  
 ![image](https://user-images.githubusercontent.com/78025620/149375572-407ad2af-9cc9-4290-9e20-a582398da0f4.png)
 ![image](https://user-images.githubusercontent.com/78025620/149375765-78042441-6cfa-4f41-954e-c8c3d6c52646.png)  
 
-### 4. 文字の縁取り（縁の色）設定
-こちらの数値を指定することで縁取りの色を変更することができます  
+### 4. Specify text border color  
+By changing below values, text border can be adjusted.    
 ![image](https://user-images.githubusercontent.com/78025620/149376109-184e828d-c846-436a-88ca-02aab3832619.png)
 ![image](https://user-images.githubusercontent.com/78025620/149375900-b4e0c1cb-39c5-4a86-8fc1-8a568a769f28.png)  
   
-例）縁の色を```RGB(128, 64, 32)```に指定した場合  
+ie) Sample of changing text border color to ```RGB(128, 64, 32)```.  
 ![image](https://user-images.githubusercontent.com/78025620/149376208-dcdb3251-a9e9-448c-aad6-5aa3b69eef1c.png)
-![image](https://user-images.githubusercontent.com/78025620/149376176-94d6913f-d8e1-4a63-9c1c-33f1e6f9cb0b.png) 
-
-### 5. 文字色の設定
-こちらの数値を指定することで文字色を変更することができます  
+![image](https://user-images.githubusercontent.com/78025620/149376176-94d6913f-d8e1-4a63-9c1c-33f1e6f9cb0b.png)   
+  
+### 5. Specify text color  
+By changing below values, text color can be adjusted.    
 ![image](https://user-images.githubusercontent.com/78025620/149376392-8432bb4d-0266-4c01-9cb7-c1c41f5f7ddf.png)
 ![image](https://user-images.githubusercontent.com/78025620/149375900-b4e0c1cb-39c5-4a86-8fc1-8a568a769f28.png)  
   
-例）縁の色を```RGB(255, 150, 150)```に指定した場合  
+ie Sample of changing text color tp ```RGB(255, 150, 150)```.  
 ![image](https://user-images.githubusercontent.com/78025620/149376506-499ea4ad-d484-4de7-a835-ccff51eccfc8.png)
 ![image](https://user-images.githubusercontent.com/78025620/149376477-f102550c-470b-4f36-b0cb-371a0bcf1560.png) 
 
-### 6. 日付の文字サイズを強制的に指定する
-こちらの数値を指定することで日付の文字サイズを変更することができます  
-※日付と時間の文字のバランスが崩れる可能性がありますのでご注意ください  
+### 6. Specify text size of date  
+By changing below values, text size of date can be adjusted.  
+*Balance of date and time may not fit very nice dpending on the value set. Please be aware when you adjust these values.  
 ![image](https://user-images.githubusercontent.com/78025620/149376810-9d92b303-daa5-4b7f-9ff9-476d64e6f97e.png)
 ![image](https://user-images.githubusercontent.com/78025620/149375900-b4e0c1cb-39c5-4a86-8fc1-8a568a769f28.png)  
   
-例）フォントのサイズを50に指定した場合  
+ie) Sample of changing font size to 50.   
 ![image](https://user-images.githubusercontent.com/78025620/149377030-a8351464-3096-4aef-a6c0-622cefe3920f.png)
 ![image](https://user-images.githubusercontent.com/78025620/149376983-5dc25898-c2bc-4533-997d-3536427408b5.png)　　
 
-### 7. 時間の文字サイズを強制的に指定する
-こちらの数値を指定することで時間の文字サイズを変更することができます  
-※日付と時間の文字のバランスが崩れる可能性がありますのでご注意ください  
+### 7. Specify text size of time  
+By changing below values, text size of time can be adjusted.  
+*Balance of date and time may not fit very nice dpending on the value set. Please be aware when you adjust these values.  
 ![image](https://user-images.githubusercontent.com/78025620/149377254-7b59d086-3cb0-4a87-8fdc-2f734c317fdc.png)
 ![image](https://user-images.githubusercontent.com/78025620/149375900-b4e0c1cb-39c5-4a86-8fc1-8a568a769f28.png)  
   
-例）フォントのサイズを100に指定した場合  
+ie) Sample of changing font size to 100.   
 ![image](https://user-images.githubusercontent.com/78025620/149605070-bb42bc6d-5b29-4c47-837e-69d455b962d5.png)
 ![image](https://user-images.githubusercontent.com/78025620/149377370-d6c51f1a-97f0-474e-8d18-093fdf042b9b.png)　　
 
-### 8. 日付の行と時間の行の間隔を指定する
-フォントやサイズによって行の間隔の調整が必要な場合に指定してください   
+### 8. Specify margin between date row and time row  
+By changing below values, margin between lines can be adjusted.  
+Please use this setting if the line margin needs to be adjusted due to font or text size.  
 ![image](https://user-images.githubusercontent.com/78025620/149377551-ef4aa3e7-cb74-4f35-bfa0-9424ca860f43.png)
 ![image](https://user-images.githubusercontent.com/78025620/149375900-b4e0c1cb-39c5-4a86-8fc1-8a568a769f28.png)  
   
-例）行間隔を20に指定した場合  
+ie) Sample of changing line margins to 20.    
 ![image](https://user-images.githubusercontent.com/78025620/149605032-faeedeb2-36b8-4076-a2a0-0d0a331f3167.png)
 ![image](https://user-images.githubusercontent.com/78025620/149377684-60f5b9b9-3052-43ad-bdb6-5e646e868c11.png)    
   
 <a id="anchor8"></a>
-### 9. 年月日の表記フォーマットを指定する
-日付のフォーマットの表記を日本式、アメリカ式、イギリス式で変更することができます  
-※デフォルトは日本式の「yyyy年mm月dd日（a）」が指定されています
+### 9. Specify date display format  
+By changing below values, date display format can be set to either "Japan format", "US format", "UK format".    
+*As default, it is set to "Japan format" (```yyyy年mm月dd日（a)```)  
 ![image](https://user-images.githubusercontent.com/78025620/149604958-e9f6b551-9f30-4ffd-b2ec-660d6228af77.png)
 ![image](https://user-images.githubusercontent.com/78025620/149605123-33578229-88a0-4979-8937-f480314a0ed8.png)    
-    
-例）年月日表記フォーマットを1に指定した場合（アメリカ式の「mm/dd/yyyy (a)」表記）  
+      
+ie) Sample of setting to 1, for "US format" (```mm/dd/yyyy (a)```)    
 ![image](https://user-images.githubusercontent.com/78025620/149604974-506d42e6-27e0-42d8-93ea-9ac92530cc85.png)
 ![image](https://user-images.githubusercontent.com/78025620/149605133-eb99a61d-9c86-40ae-a907-7b463aaeaf79.png)    
   
-例）年月日表記フォーマットを2に指定した場合（イギリス式の「dd/mm/yyyy (a)」表記）    
-![image](https://user-images.githubusercontent.com/78025620/149605016-872da544-a823-4edf-beac-f1fb633ecf6d.png)
+ie) Sample of setting to 2, for "UK format" (```dd/mm/yyyy (a)```)    
+![image](https://user-images.githubusercontent.com/78025620/149608705-ba71b548-6cdd-4a3f-ba42-91f0bab7400f.png)
 ![image](https://user-images.githubusercontent.com/78025620/149605138-781ea8d6-39e5-4d4d-8991-d8a96d51842c.png)    
   
