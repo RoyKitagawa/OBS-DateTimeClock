@@ -94,7 +94,7 @@ For English ReadMe, please view [README_EN.md](./README_EN.md)
 本ソフトウェアでは任意の時差を指定することができます  
   
 ### 時差の設定方法  
-```js/settings.js```内の```const timeDiffsInHour = 9```という文章の0を任意の表示タイプに変更してください。  
+```js/settings.js```内の```const timeDiffsInHour = 9```という文章の9を任意の表示タイプに変更してください。  
 ※日本の時差はUTC+9なため、デフォルトの設定は9となっています  
 ![image](https://user-images.githubusercontent.com/78025620/149195197-41f0bf39-5a84-40a3-a4cc-6d36fde096f0.png)  
 
