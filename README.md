@@ -112,25 +112,25 @@ For English ReadMe, please view [README_EN.md](./README_EN.md)
 
 ### PCにインストール済みのフォントを指定する方法について
 ```css/fontSettings.css```内の以下の記述を確認、及び必要に応じて調整します。  
-
-```css/fontSettings.css```の初期内容
-![image](https://user-images.githubusercontent.com/78025620/149371745-534c0476-9685-4fe7-9571-7560f85b5e01.png)
-
-以下の内容ですと、「07にくまるフォント」がPCにインストールされていれば「07にくまるフォント」が適用されます。  
+  
+```css/fontSettings.css```の初期内容  
+![image](https://user-images.githubusercontent.com/78025620/149371745-534c0476-9685-4fe7-9571-7560f85b5e01.png)  
+  
+上記内容ですと、「07にくまるフォント」がPCにインストールされていれば「07にくまるフォント」が適用されます。  
 また、もし「07にくまるフォント」が未インストールの場合は「HGP創英角ﾎﾟｯﾌﾟ体」を確認、それも未インストールなら「けいふぉんと」を、  
-という風に左から順にみてインストール済みのフォントがあればそのフォントが適用されます。
-
-そのためサンプル画像の通りの見た目表示する場合は、以下のサイトからにくまるフォントをダウンロード、インストールいただく必要があります。
-
-にくまるフォント様公式サイト  
-http://www.fontna.com/freefont/1651/  
+という風に左から順にみてインストール済みのフォントがあればそのフォントが適用されます。  
+  
+そのためサンプル画像の通りの見た目表示する場合は、以下のサイトからにくまるフォントをダウンロード、インストールいただく必要があります。  
+  
+にくまるフォント様公式サイト   
+http://www.fontna.com/freefont/1651/   
 
 #### 別のインストール済みのフォントを指定したい場合
-にくまるフォント以外のフォントを優先したい場合、また別の任意のフォントを指定したい場合、記述を編集する必要があります。
-仮に「カスタムフォント」という名前のフォントを使用したい場合、以下のような記述に変更します。
-
-![image](https://user-images.githubusercontent.com/78025620/149373008-4488b22f-58d2-408d-ab06-b2a0b1f98663.png)
-
+にくまるフォント以外のフォントを優先したい場合、また別の任意のフォントを指定したい場合、記述を編集する必要があります。  
+仮に「カスタムフォント」という名前のフォントを使用したい場合、以下のような記述に変更します。  
+  
+![image](https://user-images.githubusercontent.com/78025620/149373008-4488b22f-58d2-408d-ab06-b2a0b1f98663.png)  
+  
 ### 未インストールのフォント・フォントファイルを直接指定する方法について
 何らかの事情でPCにフォントがインストールできない場合、またフォントファイルを本プロジェクト内で管理する方法も可能です。  
   
@@ -232,6 +232,6 @@ http://www.fontna.com/freefont/1651/
 ![image](https://user-images.githubusercontent.com/78025620/149605133-eb99a61d-9c86-40ae-a907-7b463aaeaf79.png)    
   
 例）年月日表記フォーマットを2に指定した場合（イギリス式の「dd/mm/yyyy (a)」表記）    
-![image](https://user-images.githubusercontent.com/78025620/149605016-872da544-a823-4edf-beac-f1fb633ecf6d.png)
+![image](https://user-images.githubusercontent.com/78025620/149608705-ba71b548-6cdd-4a3f-ba42-91f0bab7400f.png)
 ![image](https://user-images.githubusercontent.com/78025620/149605138-781ea8d6-39e5-4d4d-8991-d8a96d51842c.png)    
   
