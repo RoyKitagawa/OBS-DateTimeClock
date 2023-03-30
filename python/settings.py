@@ -218,12 +218,12 @@ bgcolor_frame.pack(
 
 ##############################
 # サンプル表示UI
+# 
+# ここのサンプル表示はラベルじゃなくて
+# https://self-development.info/%E3%80%90python%E3%80%91tkinter%E3%81%AB%E3%82%88%E3%82%8B%E7%94%BB%E5%83%8F%E8%A1%A8%E7%A4%BA%E3%82%92%E3%82%8F%E3%81%8B%E3%82%8A%E3%82%84%E3%81%99%E3%81%8F%E8%A7%A3%E8%AA%AC/
+# https://watlab-blog.com/2021/05/06/decoration-telop/#%E7%B8%81%E5%8F%96%E3%82%8A%E6%96%87%E5%AD%97%E3%82%92%E5%85%A5%E3%82%8C%E3%82%8BPython%E3%82%B3%E3%83%BC%E3%83%89
+# https://xn--eckl3qmbc2cv902cnwa746d81h183l.com/instructor-blog/211229how-to-add-bordered-text-to-an-image-in-python/
 ##############################
-# # 日時のサンプル表示UI
-# sample_datetime_frame = None
-# sample_datetime_bg = None
-# sample_datetime_label = None
-# sample_datetime_bg_color = '#778899'
 sample_datetime_frame = ttk.LabelFrame(root, text="サンプル表示")
 
 sample_datetime_bg = ttk.Label(sample_datetime_frame,background=data_manager.load_bg_color())
