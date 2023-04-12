@@ -22,3 +22,11 @@ class ColorSelectButton(tkinter.Button):
         self.config(
             bg=color_code,            
         )
+
+class SettingData():
+    def __init__(self):
+        super().__init__(
+            date_format = None,
+            font = None,
+            font_size = None,
+        )
