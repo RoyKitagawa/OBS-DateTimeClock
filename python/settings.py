@@ -65,8 +65,10 @@ root = tkinter.Tk()
 # 画面サイズ
 root.geometry('600x400')
 # 画面タイトル
-root.title('サンプル画面')
+root.title('OBS時計設定')
 
+# データの初期化処理
+data_manager.initialize_data()
 
 ##############################
 # 日時表記フォーマット選択UI
@@ -127,59 +129,11 @@ datetime_sample_label_frame.pack(
     expand=True,
 )
 
-
-
-
 datetime_sample_frame.pack(anchor=tkinter.W, fill=tkinter.X,
                            padx=10,
                            pady=(10, 0),
                            )
-
-
-# # カラピッカー用ボタン
-# fontcolor_picker = ColorSelectButton(fontcolor_frame)
-# fontcolor_picker.set_color(data_manager.load_font_color())
-# fontcolor_picker.pack(side=tkinter.LEFT, )
-# fontcolor_frame.pack(
-#     anchor=tkinter.N,
-#     fill=tkinter.X,
-#     padx=10,
-#     pady=(10, 0),
-# )
-
-# # datetime_sample_label = ttk.Label(
-# #     datetime_sample_label_frame, text="日時表記フォーマット",)
-# # datetime_sample_label.pack(side=tkinter.RIGHT,)
-# # datetime_sample_label_frame.propagate(False)
-
-# # datetime_sample_label = ttk.Label(
-# #     datetime_sample_label_frame, text="日時表記フォーマット",)
-# # datetime_sample_label.pack(side=tkinter.RIGHT,)
-# # datetime_sample_label_frame.propagate(False)
-
-# datetime_sample_frame.pack(anchor=tkinter.W, fill=tkinter.X,
-#                            padx=10,
-#                            pady=(10, 0),
-#                            )
-
-# # Combobox自体を作成
-# datetime_format_picker = ttk.Combobox(
-#     datetime_format_frame, values=data_manager.datetime_format_list, )
-# datetime_format_picker.set(data_manager.load_datetime_format())
-# datetime_format_picker.pack(side=tkinter.LEFT, fill=tkinter.X, expand=True, )
-# datetime_format_frame.pack(anchor=tkinter.W, fill=tkinter.X,
-#                            padx=10,
-#                            pady=(10, 0),
-#                            )
-
-# # Label作成
-# datetime_sample_label_frame = ttk.Frame(
-#     datetime_format_frame, width=text_ui_width, height=text_ui_height)
-# datetime_sample_label = ttk.Label(
-#     datetime_sample_label_frame, text="サンプル",)
-# datetime_sample_label.pack(side=tkinter.TOP,)
-# datetime_sample_label_frame.propagate(False)
-# datetime_sample_label_frame.pack(side=tkinter.LEFT, padx=(0, 10), )
+on_datetime_format_select(None)
 
 
 
@@ -242,7 +196,7 @@ datefontsize_picker = ttk.Combobox(
     master=datefontsize_frame,
     values=datefontsize_list,
 )
-datefontsize_picker.set(data_manager.load_font_size())
+datefontsize_picker.set(data_manager.load_date_font_size())
 datefontsize_picker.pack(
     side=tkinter.LEFT,
     # fill=tkinter.X,
@@ -279,7 +233,7 @@ timefontsize_picker = ttk.Combobox(
     master=timefontsize_frame,
     values=timefontsize_list,
 )
-timefontsize_picker.set(data_manager.load_font_size())
+timefontsize_picker.set(data_manager.load_time_font_size())
 timefontsize_picker.pack(
     side=tkinter.LEFT,
     # fill=tkinter.X,
@@ -292,6 +246,44 @@ timefontsize_frame.pack(
     padx=10,
     pady=(10, 0),
 )
+
+##############################
+# 縁取りののフォントサイズ選択UI
+##############################
+fontbordersize_frame = ttk.Frame(root)
+
+# Label作成
+fontbordersize_label_frame = ttk.Frame(fontbordersize_frame, width=text_ui_width,
+                                 height=text_ui_height,)
+fontbordersize_label = ttk.Label(fontbordersize_label_frame, text="縁取りサイズ",)
+fontbordersize_label.pack(side=tkinter.RIGHT,)
+fontbordersize_label_frame.propagate(False)
+fontbordersize_label_frame.pack(
+    side=tkinter.LEFT,
+    padx=(0, 10),
+)
+
+# Combobox自体を作成
+fontbordersize_list = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 17, 20, 25, 30, 40, 50, 60,
+                 70, 80, 100, 120, 150, 170, 200, 250, 300, 400, 500, 600, 700, 800, 1000, ]
+fontbordersize_picker = ttk.Combobox(
+    master=fontbordersize_frame,
+    values=fontbordersize_list,
+)
+fontbordersize_picker.set(data_manager.load_border_size())
+fontbordersize_picker.pack(
+    side=tkinter.LEFT,
+    # fill=tkinter.X,
+    # expand=True,
+)
+fontbordersize_frame.pack(
+    anchor=tkinter.W,
+    # side=tkinter.LEFT,
+    # fill=tkinter.X,
+    padx=10,
+    pady=(10, 0),
+)
+
 
 
 ##############################
@@ -311,9 +303,35 @@ fontcolor_label_frame.pack(
 
 # カラピッカー用ボタン
 fontcolor_picker = ColorSelectButton(fontcolor_frame)
-fontcolor_picker.set_color(data_manager.load_font_color())
+fontcolor_picker.set_color(data_manager.load_text_color())
 fontcolor_picker.pack(side=tkinter.LEFT, )
 fontcolor_frame.pack(
+    anchor=tkinter.N,
+    fill=tkinter.X,
+    padx=10,
+    pady=(10, 0),
+)
+
+##############################
+# 縁取り色選択UI
+##############################
+fontbordercolor_frame = ttk.Frame(root)
+
+# Label作成
+fontbordercolor_label_frame = ttk.Frame(fontbordercolor_frame, width=text_ui_width, height=text_ui_height,)
+fontbordercolor_label = ttk.Label(fontbordercolor_label_frame, text="文字の縁取り色",)
+fontbordercolor_label.pack(side=tkinter.RIGHT,)
+fontbordercolor_label_frame.propagate(False)
+fontbordercolor_label_frame.pack(
+    side=tkinter.LEFT,
+    padx=(0, 10),
+)
+
+# カラピッカー用ボタン
+fontbordercolor_picker = ColorSelectButton(fontbordercolor_frame)
+fontbordercolor_picker.set_color(data_manager.load_text_border_color())
+fontbordercolor_picker.pack(side=tkinter.LEFT, )
+fontbordercolor_frame.pack(
     anchor=tkinter.N,
     fill=tkinter.X,
     padx=10,
@@ -338,7 +356,7 @@ bgcolor_label_frame.pack(
 
 # カラピッカー用ボタン
 bgcolor_picker = ColorSelectButton(bgcolor_frame)
-bgcolor_picker.set_color(data_manager.load_bg_color())
+bgcolor_picker.set_color(data_manager.load_background_color())
 bgcolor_picker.pack(side=tkinter.LEFT, )
 bgcolor_frame.pack(
     anchor=tkinter.N,
@@ -381,28 +399,28 @@ preview_frame.pack(
 ##############################
 # 保存する
 ##############################
-preview_frame = ttk.Frame(root)
+save_frame = ttk.Frame(root)
 
 # Label作成
-preview_label_frame = ttk.Frame(preview_frame, width=text_ui_width, height=text_ui_height,)
-preview_label = ttk.Label(preview_label_frame, text="保存",)
-preview_label.pack(side=tkinter.RIGHT,)
-preview_label_frame.propagate(False)
-preview_label_frame.pack(
+save_label_frame = ttk.Frame(save_frame, width=text_ui_width, height=text_ui_height,)
+save_label = ttk.Label(save_label_frame, text="保存",)
+save_label.pack(side=tkinter.RIGHT,)
+save_label_frame.propagate(False)
+save_label_frame.pack(
     side=tkinter.LEFT,
     padx=(0, 10),
 )
 
 
-preview_button = ttk.Button(
-    preview_frame,
+save_button = ttk.Button(
+    save_frame,
     text="設定を保存する",
     command=data_manager.save_setting_file)
-preview_button.pack(
+save_button.pack(
     side=tkinter.LEFT,
     expand=True,
     fill=tkinter.X,)
-preview_frame.pack(
+save_frame.pack(
     anchor=tkinter.N,
     fill=tkinter.X,
     padx=10,

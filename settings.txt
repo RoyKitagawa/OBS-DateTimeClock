@@ -1,5 +1,8 @@
-abcabcabcde
-abcabcde
-abc
-abc
-abc
+DateFormat:【1-1】YYYY年MM月DD（aaa） [改行] hh:mm:ss
+Font:System
+DateFontSize:23
+TimeFontSize:24
+BorderSize:11
+TextColor:#ff0000
+TextBorderColor:#994444
+BackgroundColor:#004444
