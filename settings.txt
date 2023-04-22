@@ -1,8 +1,8 @@
-DateFormat:【1-1】YYYY年MM月DD（aaa） [改行] hh:mm:ss
-Font:System
-DateFontSize:23
-TimeFontSize:24
-BorderSize:11
-TextColor:#ff0000
-TextBorderColor:#994444
-BackgroundColor:#004444
+DateFormat:【3-3】YYYY/MM/DD [改行] hh:mm:ss
+Font:やわらかドラゴン mini mini
+DateFontSize:5
+TimeFontSize:6
+BorderSize:7
+TextColor:#ff8080
+TextBorderColor:#ffff80
+BackgroundColor:#80ff80

@@ -38,6 +38,16 @@ datetime_format_list = [
     '【4-4】YYYY/MM/DD hh:mm:ss.sss',
 ]
 
+fontsize_list = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 17, 20, 25, 30, 40, 50, 60,
+                 70, 80, 100, 120, 150, 170, 200, 250, 300, 400, 500, 600, 700, 800, 1000, ]
+
+_font_list = None
+def get_font_list():
+    global _font_list
+    if not _font_list:
+        _font_list = tkinter.font.families()
+    return _font_list
+
 ##############################
 # データ処理用変数・定数
 ##############################

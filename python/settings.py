@@ -4,7 +4,7 @@ from ui_class import ColorSelectButton
 # import gui_manager as gui
 import gui_manager
 import data_manager
-
+from tkinter import colorchooser
 
 # 日時表記フォーマット選択UI
 datetime_format_frame = None
@@ -12,6 +12,10 @@ datetime_format_label_frame = None
 datetime_format_label = None
 datetime_format_picker = None
 datetime_format_list = None
+
+# 日付表記サンプルUI
+datetime_sample_label = None
+sample_label_text = None
 
 # フォント選択UI
 font_frame = None
@@ -34,6 +38,9 @@ timefontsize_label = None
 timefontsize_picker = None
 timefontsize_list = None
 
+# 縁取りのサイズ
+fontbordersize_picker = None
+
 # フォント色選択UI
 fontcolor_frame = None
 fontcolor_label_frame = None
@@ -46,6 +53,9 @@ bgcolor_label_frame = None
 bgcolor_label = None
 bgcolor_picker = None
 
+# フォント縁色選択UI
+fontbordercolor_picker = None
+
 # 日時のサンプル表示UI
 sample_datetime_frame = None
 sample_datetime_bg = None
@@ -56,6 +66,56 @@ sample_datetime_bg_color = '#778899'
 text_ui_width = 110
 text_ui_height = 20
 
+##############################
+# 設定変更反映用のコールバック処理
+##############################
+
+# 日付フォーマット変更時
+def on_datetime_format_select(event):
+    selected_format = data_manager.datetime_format_list[datetime_format_picker.current()]
+    datetime_sample_label['text'] = data_manager.get_format_datetime_sample(selected_format)
+    data_manager.set_datetime_format(selected_format)
+
+# フォント変更時
+def on_font_select(event):
+    selected_data = data_manager.get_font_list()[font_picker.current()]
+    data_manager.set_font(selected_data)
+
+# 日付フォントサイズ変更時
+def on_date_font_size_select(event):
+    selected_data = data_manager.fontsize_list[datefontsize_picker.current()]
+    data_manager.set_date_font_size(str(selected_data))
+
+# 時間フォントサイズ変更時
+def on_time_font_size_select(event):
+    selected_data = data_manager.fontsize_list[timefontsize_picker.current()]
+    data_manager.set_time_font_size(str(selected_data))
+
+# 縁取りフォントサイズ変更時
+def on_border_size_select(event):
+    selected_data = data_manager.fontsize_list[fontbordersize_picker.current()]
+    data_manager.set_border_size(str(selected_data))
+
+# 文字色変更時
+def on_text_color_select():
+    global fontcolor_picker
+    color = colorchooser.askcolor()[1]
+    fontcolor_picker['bg'] = color
+    data_manager.set_text_color(color)
+
+# 文字縁取り色変更時
+def on_border_color_select():
+    global fontbordercolor_picker
+    color = colorchooser.askcolor()[1]
+    fontbordercolor_picker['bg'] = color
+    data_manager.set_text_border_color(color)
+
+# 背景色
+def on_background_color_select():
+    global bgcolor_picker
+    color = colorchooser.askcolor()[1]
+    bgcolor_picker['bg'] = color
+    data_manager.set_background_color(color)
 
 ##############################
 # 基本設定
@@ -73,13 +133,6 @@ data_manager.initialize_data()
 ##############################
 # 日時表記フォーマット選択UI
 ##############################
-datetime_sample_label = None
-sample_label_text = None
-
-def on_datetime_format_select(event):
-    # datetime_format_picker
-    datetime_sample_label['text'] = data_manager.get_format_datetime_sample(data_manager.datetime_format_list[datetime_format_picker.current()])
-
 datetime_format_frame = ttk.Frame(root)
 
 # Label作成
@@ -154,12 +207,12 @@ font_label_frame.pack(
 )
 
 # Combobox自体を作成
-font_list = tkinter.font.families()
 font_picker = ttk.Combobox(
     master=font_frame,
-    values=font_list,
+    values=data_manager.get_font_list(),
 )
 font_picker.set(data_manager.load_font())
+font_picker.bind('<<ComboboxSelected>>', on_font_select)
 font_picker.pack(
     side=tkinter.LEFT,
     fill=tkinter.X,
@@ -190,13 +243,12 @@ datefontsize_label_frame.pack(
 )
 
 # Combobox自体を作成
-datefontsize_list = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 17, 20, 25, 30, 40, 50, 60,
-                 70, 80, 100, 120, 150, 170, 200, 250, 300, 400, 500, 600, 700, 800, 1000, ]
 datefontsize_picker = ttk.Combobox(
     master=datefontsize_frame,
-    values=datefontsize_list,
+    values=data_manager.fontsize_list,
 )
 datefontsize_picker.set(data_manager.load_date_font_size())
+datefontsize_picker.bind('<<ComboboxSelected>>', on_date_font_size_select)
 datefontsize_picker.pack(
     side=tkinter.LEFT,
     # fill=tkinter.X,
@@ -227,13 +279,12 @@ timefontsize_label_frame.pack(
 )
 
 # Combobox自体を作成
-timefontsize_list = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 17, 20, 25, 30, 40, 50, 60,
-                 70, 80, 100, 120, 150, 170, 200, 250, 300, 400, 500, 600, 700, 800, 1000, ]
 timefontsize_picker = ttk.Combobox(
     master=timefontsize_frame,
-    values=timefontsize_list,
+    values=data_manager.fontsize_list,
 )
 timefontsize_picker.set(data_manager.load_time_font_size())
+timefontsize_picker.bind('<<ComboboxSelected>>', on_time_font_size_select)
 timefontsize_picker.pack(
     side=tkinter.LEFT,
     # fill=tkinter.X,
@@ -264,13 +315,12 @@ fontbordersize_label_frame.pack(
 )
 
 # Combobox自体を作成
-fontbordersize_list = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 17, 20, 25, 30, 40, 50, 60,
-                 70, 80, 100, 120, 150, 170, 200, 250, 300, 400, 500, 600, 700, 800, 1000, ]
 fontbordersize_picker = ttk.Combobox(
     master=fontbordersize_frame,
-    values=fontbordersize_list,
+    values=data_manager.fontsize_list,
 )
 fontbordersize_picker.set(data_manager.load_border_size())
+fontbordersize_picker.bind('<<ComboboxSelected>>', on_border_size_select)
 fontbordersize_picker.pack(
     side=tkinter.LEFT,
     # fill=tkinter.X,
@@ -302,8 +352,9 @@ fontcolor_label_frame.pack(
 )
 
 # カラピッカー用ボタン
-fontcolor_picker = ColorSelectButton(fontcolor_frame)
-fontcolor_picker.set_color(data_manager.load_text_color())
+fontcolor_picker = tkinter.Button(fontcolor_frame,text="", width=10, relief=tkinter.SOLID, bd=1)
+fontcolor_picker['bg'] = data_manager.load_text_color()
+fontcolor_picker['command'] = on_text_color_select
 fontcolor_picker.pack(side=tkinter.LEFT, )
 fontcolor_frame.pack(
     anchor=tkinter.N,
@@ -328,8 +379,9 @@ fontbordercolor_label_frame.pack(
 )
 
 # カラピッカー用ボタン
-fontbordercolor_picker = ColorSelectButton(fontbordercolor_frame)
-fontbordercolor_picker.set_color(data_manager.load_text_border_color())
+fontbordercolor_picker = tkinter.Button(fontbordercolor_frame,text="", width=10, relief=tkinter.SOLID, bd=1)
+fontbordercolor_picker['bg'] = data_manager.load_text_border_color()
+fontbordercolor_picker['command'] = on_border_color_select
 fontbordercolor_picker.pack(side=tkinter.LEFT, )
 fontbordercolor_frame.pack(
     anchor=tkinter.N,
@@ -355,8 +407,9 @@ bgcolor_label_frame.pack(
 )
 
 # カラピッカー用ボタン
-bgcolor_picker = ColorSelectButton(bgcolor_frame)
-bgcolor_picker.set_color(data_manager.load_background_color())
+bgcolor_picker = tkinter.Button(bgcolor_frame,text="", width=10, relief=tkinter.SOLID, bd=1)
+bgcolor_picker['bg'] = data_manager.load_background_color()
+bgcolor_picker['command'] = on_background_color_select
 bgcolor_picker.pack(side=tkinter.LEFT, )
 bgcolor_frame.pack(
     anchor=tkinter.N,
